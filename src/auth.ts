@@ -4,6 +4,7 @@ import { compare } from "bcryptjs";
 import prisma from "@/lib/prisma"; // <--- CORRECT: Import the singleton client
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       name: "Credentials",
