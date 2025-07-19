@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL") // Added for Vercel compatibility
+}
+
+model Student {
+  id                String   @id @default(cuid())
+  enrollmentNumber  String   @unique
+  name              String
+  branch            String   // <-- ADD THIS
+  semester          Int      // <-- ADD THIS
+  sem1Paid          Boolean  @default(false)
+  sem2Paid          Boolean  @default(false)
+  sem3Paid          Boolean  @default(false)
+  sem4Paid          Boolean  @default(false)
+  sem5Paid          Boolean  @default(false)
+  sem6Paid          Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// User model remains the same
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
